@@ -39,16 +39,16 @@ class Calculation {
         } else {
             numerals.forEach(numeral -> arabicPerformance.add(Integer.parseInt(numeral)));
 
-            for (Integer integer : arabicPerformance) {
-                if (integer <= 0 && integer > 10) return "Must be between 1 and 10";
-            }
-
             return String.valueOf(calculate());
         }
     }
 
     // if once we will need to make more than 1 operation here we make cycle with priorities and black jack :)
     private int calculate() {
+        for (Integer integer : arabicPerformance) {
+            if (integer <= 0 || integer > 10) throw new NumberFormatException("Must be between 1 and 10");
+        }
+
         return calculator.arithmetic(functions.get(0), arabicPerformance.get(0), arabicPerformance.get(1));
     }
 
